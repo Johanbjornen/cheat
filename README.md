@@ -1,20 +1,20 @@
-cht
+cheat
 ====
 
 ## Description
-CHeaT sheet cli tool.
+cheat sheet cli tool.
 
 ## Usage
 
 Add a command and its description.
 ```bash
-$ cht add "ls" "show list of directories & files"
+$ cheat add "ls" "show list of directories & files"
 ```
 
 Show cheat list.
 
 ```bash
-$ cht list
+$ cheat list
 # => 1) ls
 # =>   show list of directories & files
 # => 2) rm -r
@@ -24,7 +24,7 @@ $ cht list
 Delete a command.
 
 ```bash
-$ cht delete 1
+$ cheat delete 1
 ```
 
 ## Install
@@ -32,12 +32,12 @@ $ cht delete 1
 To install, use `go get`:
 
 ```bash
-$ go get -d github.com/takady/cht
+$ go get -d github.com/takady/cheat
 ```
 
 ## Contribution
 
-1. Fork ([https://github.com/takady/cht/fork](https://github.com/takady/cht/fork))
+1. Fork ([https://github.com/takady/cheat/fork](https://github.com/takady/cheat/fork))
 1. Create a feature branch
 1. Commit your changes
 1. Rebase your local changes against the master branch

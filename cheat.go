@@ -6,9 +6,11 @@ import (
 	"github.com/codegangsta/cli"
 )
 
+var CHEAT_FILE = os.Getenv("HOME") + "/.cheat"
+
 func main() {
 	app := cli.NewApp()
-	app.Name = "cht"
+	app.Name = "cheat"
 	app.Version = Version
 	app.Usage = ""
 	app.Author = "takady"
