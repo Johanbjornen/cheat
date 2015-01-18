@@ -1,11 +1,10 @@
 package main
 
 import (
-	"bufio"
-	"fmt"
+	"encoding/json"
 	"log"
 	"os"
-	"strings"
+	"strconv"
 
 	"github.com/codegangsta/cli"
 )
@@ -62,63 +61,67 @@ func init() {
 	}
 }
 
+type Cheat struct {
+	Command     string
+	Description string
+}
+
 func doAdd(c *cli.Context) {
 	args := c.Args()
-	add_command := args.First()
-	add_description := args[:2]
-	commands := getAll()
+	command := args.Get(0)
+	description := args.Get(1)
+	cheats := getAll()
 
-	fmt.Println(add_command)
-	fmt.Println(add_description)
-
-	for _, add_task := range add_command {
-		commands = append(commands, add_task)
-	}
-
-	write(commands)
+	cheat := Cheat{command, description}
+	cheats = append(cheats, cheat)
+	write(cheats)
 }
 
 func doList(c *cli.Context) {
-	commands := getAll()
-	for i, command := range commands {
-		println(i+1, ":", string(command))
+	cheats := getAll()
+	for i, cheat := range cheats {
+		println(i+1, ")", cheat.Command)
+		println("   ", cheat.Description)
 	}
 }
 
 func doDelete(c *cli.Context) {
-	delete_command := c.Args()[0]
-	commands := getAll()
-	var result []string
+	delete_index, err := strconv.Atoi(c.Args().Get(0))
+	if err != nil {
+		panic(err)
+	}
+	cheats := getAll()
 
-	for _, command := range commands {
-		if command != delete_command {
-			result = append(result, command)
+	var result []Cheat
+	for i, cheat := range cheats {
+		if i+1 != delete_index {
+			result = append(result, cheat)
 		}
 	}
 
 	write(result)
 }
 
-func getAll() []string {
+func getAll() []Cheat {
 	f, err := os.OpenFile(CHEAT_FILE, os.O_RDONLY, 0600)
 	assert(err)
 	defer f.Close()
 
-	var lines []string
-	scanner := bufio.NewScanner(f)
-	for scanner.Scan() {
-		lines = append(lines, scanner.Text())
-	}
-	assert(scanner.Err())
+	var cheat []Cheat
+	j := json.NewDecoder(f)
+	j.Decode(&cheat)
 
-	return lines
+	return cheat
 }
 
-func write(commands []string) {
+func write(cheat []Cheat) {
 	f, err := os.OpenFile(CHEAT_FILE, os.O_TRUNC|os.O_WRONLY, 0600)
 	assert(err)
 	defer f.Close()
 
-	_, err = f.WriteString(strings.Join(commands, "\n"))
+	j, err := json.Marshal(cheat)
+	assert(err)
+
+	_, err = f.Write(j)
 	assert(err)
 }
