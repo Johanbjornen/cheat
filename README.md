@@ -27,12 +27,15 @@ Delete a command.
 $ cheat delete 1
 ```
 
+### Note
+Cheat sheet is stored in `~/.cheat.json`.
+
 ## Install
 
 To install, use `go get`:
 
 ```bash
-$ go get -d github.com/takady/cheat
+$ go get github.com/takady/cheat
 ```
 
 ## Contribution
