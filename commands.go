@@ -62,17 +62,17 @@ func init() {
 }
 
 type Cheat struct {
-	Command     string
 	Description string
+	Example     string
 }
 
 func doAdd(c *cli.Context) {
 	args := c.Args()
-	command := args.Get(0)
-	description := args.Get(1)
+	description := args.Get(0)
+	example := args.Get(1)
 	cheats := getAll()
 
-	cheat := Cheat{command, description}
+	cheat := Cheat{description, example}
 	cheats = append(cheats, cheat)
 	write(cheats)
 }
@@ -80,8 +80,8 @@ func doAdd(c *cli.Context) {
 func doList(c *cli.Context) {
 	cheats := getAll()
 	for i, cheat := range cheats {
-		println(i+1, ")", cheat.Command)
-		println("   ", cheat.Description)
+		println(i+1, ".", cheat.Description)
+		println("   ", cheat.Example, "\n")
 	}
 }
 
