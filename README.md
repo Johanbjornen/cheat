@@ -8,23 +8,25 @@ cheat sheet cli tool.
 
 Add a command and its description.
 ```bash
-$ cheat add "ls" "show list of directories & files"
+$ cheat add "show list of directories & files" "ls"
 ```
 
 Show cheat list.
 
 ```bash
-$ cheat list
-# => 1) ls
-# =>   show list of directories & files
-# => 2) rm -r
-# =>   remove directory
+$ cheat ls
+# => 1. show list of directories & files
+# => ls
+# =>
+# => 2. remove directory
+# => rm -r
+# =>
 ```
 
-Delete a command.
+Delete a cheat.
 
 ```bash
-$ cheat delete 1
+$ cheat rm 1
 ```
 
 ### Note

@@ -24,7 +24,7 @@ var commandAdd = cli.Command{
 }
 
 var commandList = cli.Command{
-	Name:  "list",
+	Name:  "ls",
 	Usage: "show cheat sheet",
 	Description: `
 `,
@@ -32,8 +32,8 @@ var commandList = cli.Command{
 }
 
 var commandDelete = cli.Command{
-	Name:  "delete",
-	Usage: "delete command",
+	Name:  "rm",
+	Usage: "remove command",
 	Description: `
 `,
 	Action: doDelete,
