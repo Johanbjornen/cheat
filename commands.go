@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"log"
 	"os"
 	"strconv"
@@ -80,8 +81,8 @@ func doAdd(c *cli.Context) {
 func doList(c *cli.Context) {
 	cheats := getAll()
 	for i, cheat := range cheats {
-		println(i+1, ".", cheat.Description)
-		println("   ", cheat.Example, "\n")
+		fmt.Printf("%v. %v\n", i+1, cheat.Description)
+		fmt.Printf("   %v\n\n", cheat.Example)
 	}
 }
 
