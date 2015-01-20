@@ -6,7 +6,7 @@ cheat sheet cli tool.
 
 ## Usage
 
-Add a command and its description.
+Add a description and example.
 ```bash
 $ cheat add "show list of directories & files" "ls"
 ```
@@ -39,6 +39,8 @@ To install, use `go get`:
 ```bash
 $ go get github.com/takady/cheat
 ```
+
+Or you can download the binary file from [here](https://github.com/takady/cheat/releases).
 
 ## Contribution
 
